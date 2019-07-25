@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Lista de Convidados</title>
+
+<!-- BOOTSTRAP CSS -->
+<link rel="stylesheet"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+</head>
+<body>
+
+<!-- FORMULÁRIO PARA ADICIONAR UM NOVO CONVIDADO -->
+
+<form class="form-inline" method="post" th:object="${convidado}" th:action="@{/convidados}" style="margin=20px 0">
+	<div class="form-group">
+		<input type="text" th:field="*{nome}" class="form-control" placeholder="Nome do Convidado"/>
+		<input type="text" th:field="*{quantidadeAcompanhantes}" class="form-control" placeholder="Quantidade de Acompanhantes"/>
+		<button type="submit" class="btn btn-primary">Adicionar</button>
+	</div>
+</form>
+
+<!-- LISTA DE CONVIDADOS -->
+
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista de Convidados</h1>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Acompanhantes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="convidado: ${convidados}">
+						<td th:text="${convidado.nome}"></td>
+						<td th:text="${convidado.quantidadeAcompanhantes}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<!-- BOOTSTRAP JS -->
+	<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"></script>
+	<script
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}"></script>
+	<script
+		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
